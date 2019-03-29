@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SJOperationQueue_Example' do
+  pod 'SJOperationQueue', :path => '../'
+
+  target 'SJOperationQueue_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase' , '~> 2.1.4'
+  end
+end

@@ -1,0 +1,6 @@
+framework module SJOperationQueue {
+  umbrella header "SJOperationQueue-umbrella.h"
+
+  export *
+  module * { export * }
+}

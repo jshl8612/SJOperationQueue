@@ -1,0 +1,22 @@
+{
+  "name": "SJOperationQueue",
+  "version": "0.1.0",
+  "summary": "A short description of SJOperationQueue.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/jshl8612/SJOperationQueue",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "jshl8612": "jshl8612@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/jshl8612/SJOperationQueue.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SJOperationQueue/Classes/**/*"
+}
