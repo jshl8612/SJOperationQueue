@@ -34,27 +34,20 @@ class testOperationQueueTests: XCTestCase {
     
     func testOpQueue() {
     
-        let printQueue1: [() -> Void] = (1...30).map({ val in
-            let op: ()->Void = {
-                print("\(val)")
-            }
-            return op
-        })
-        
-        let queue1 = SJOperationQueue(queue: printQueue1)
-        
-        let printQueue2: [() -> Void] = (31...60).map({ val in
-            let op: ()->Void = {
-                print("\(val)")
-            }
-            return op
-        })
-        
-        let queue2 = SJOperationQueue(queue: printQueue2)
-        
+        let printQueue: (_ startInt: Int) -> SJOperationQueue = { startInt in
+            
+            return SJOperationQueue(queue: (startInt...startInt+29).map({ val in
+                let op: ()->Void = {
+                    print("\(val)")
+                }
+                return op
+            }))
+        }
+
+        let queue1 = SJOperationQueue(opQueueList: [printQueue(1), printQueue(31)])
+        let queue2 = SJOperationQueue(opQueueList: [printQueue(61), printQueue(91)])
         let queue = SJOperationQueue(opQueueList: [queue1, queue2])
-        
+                                                                                                            
         queue.start()
-        
     }
 }
