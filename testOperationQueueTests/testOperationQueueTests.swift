@@ -31,4 +31,30 @@ class testOperationQueueTests: XCTestCase {
         }
     }
 
+    
+    func testOpQueue() {
+    
+        let printQueue1: [() -> Void] = (1...30).map({ val in
+            let op: ()->Void = {
+                print("\(val)")
+            }
+            return op
+        })
+        
+        let queue1 = SJOperationQueue(queue: printQueue1)
+        
+        let printQueue2: [() -> Void] = (31...60).map({ val in
+            let op: ()->Void = {
+                print("\(val)")
+            }
+            return op
+        })
+        
+        let queue2 = SJOperationQueue(queue: printQueue2)
+        
+        let queue = SJOperationQueue(opQueueList: [queue1, queue2])
+        
+        queue.start()
+        
+    }
 }

@@ -14,6 +14,8 @@
 		22F8EE10224DDEC7007B5D66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22F8EE0E224DDEC7007B5D66 /* LaunchScreen.storyboard */; };
 		22F8EE1B224DDEC7007B5D66 /* testOperationQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F8EE1A224DDEC7007B5D66 /* testOperationQueueTests.swift */; };
 		22F8EE26224DDEC7007B5D66 /* testOperationQueueUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F8EE25224DDEC7007B5D66 /* testOperationQueueUITests.swift */; };
+		22F8EE34224DDEDE007B5D66 /* SJOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F8EE33224DDEDE007B5D66 /* SJOperationQueue.swift */; };
+		22F8EE35224DE90F007B5D66 /* SJOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F8EE33224DDEDE007B5D66 /* SJOperationQueue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,7 @@
 		22F8EE21224DDEC7007B5D66 /* testOperationQueueUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testOperationQueueUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F8EE25224DDEC7007B5D66 /* testOperationQueueUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testOperationQueueUITests.swift; sourceTree = "<group>"; };
 		22F8EE27224DDEC7007B5D66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22F8EE33224DDEDE007B5D66 /* SJOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SJOperationQueue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,7 @@
 			children = (
 				22F8EE05224DDEC5007B5D66 /* AppDelegate.swift */,
 				22F8EE07224DDEC5007B5D66 /* ViewController.swift */,
+				22F8EE33224DDEDE007B5D66 /* SJOperationQueue.swift */,
 				22F8EE09224DDEC5007B5D66 /* Main.storyboard */,
 				22F8EE0C224DDEC7007B5D66 /* Assets.xcassets */,
 				22F8EE0E224DDEC7007B5D66 /* LaunchScreen.storyboard */,
@@ -256,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22F8EE34224DDEDE007B5D66 /* SJOperationQueue.swift in Sources */,
 				22F8EE08224DDEC5007B5D66 /* ViewController.swift in Sources */,
 				22F8EE06224DDEC5007B5D66 /* AppDelegate.swift in Sources */,
 			);
@@ -265,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22F8EE35224DE90F007B5D66 /* SJOperationQueue.swift in Sources */,
 				22F8EE1B224DDEC7007B5D66 /* testOperationQueueTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
