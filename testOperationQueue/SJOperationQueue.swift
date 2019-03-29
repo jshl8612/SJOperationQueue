@@ -122,3 +122,11 @@ class SJOperationQueue: NSObject {
         }
     }
 }
+
+extension Sequence where Iterator.Element == ()->Void
+{
+    func toSJOperationQueue() -> SJOperationQueue {
+        
+        return SJOperationQueue(queue: map({$0}))
+    }
+}

@@ -50,4 +50,18 @@ class testOperationQueueTests: XCTestCase {
                                                                                                             
         queue.start()
     }
+    
+    func testExtensionFunc() {
+        let printQueue: (_ startInt: Int) -> [() -> Void] = { startInt in
+            
+            return (startInt...startInt+29).map({ val in
+                let op: ()->Void = {
+                    print("\(val)")
+                }
+                return op
+            })
+        }
+        
+        
+    }
 }
