@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class SJOperationQueue: NSObject {
     
     enum OperateType {
