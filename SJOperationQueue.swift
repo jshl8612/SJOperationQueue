@@ -14,7 +14,12 @@ class SJOperationQueue: NSObject {
         case async
     }
     
-    private var queue : [() -> Void] = []
+    typealias SJOperation = (_ onCompleted: () -> Void) -> Void
+    
+    private var queue : [()->Void] = []
+    private var completedCount: Int = 0
+    private var totalCount: Int = 0
+    
     private var opQueueList: [SJOperationQueue] = []
     
     var isOperating : Bool {
@@ -33,20 +38,34 @@ class SJOperationQueue: NSObject {
     /// - Parameters:
     ///   - type: Operate Type (aync or sync)
     ///   - queue: Operation List
-    init(queue: [() -> Void]) {
+    
+    init(sync queue: [SJOperation]) {
         super.init()
         
         self.operateType = .sync
-        self.queue = queue.map({ [weak self] op in
-            let newOp: () -> Void = {
-                op()
-                self?.next()
+        self.queue = queue.map({op in
+            {
+                op(self.next)
             }
-            return newOp
         })
     }
     
-    init(opQueueList: [SJOperationQueue]) {
+    init(async queue: [SJOperation]) {
+        super.init()
+        
+        self.operateType = .async
+        
+        self.totalCount = queue.count
+        self.completedCount = 0
+        
+        self.queue = queue.map({op in
+            {
+                op(self.subQueueCompleted)
+            }
+        })
+    }
+    
+    init(syncOpQueueList: [SJOperationQueue]) {
         super.init()
         
         self.operateType = .sync
@@ -61,17 +80,40 @@ class SJOperationQueue: NSObject {
         })
     }
     
+    init(ayncOpQueueList: [SJOperationQueue]) {
+        super.init()
+        
+        self.operateType = .async
+        self.queue = opQueueList.map({ [weak self] op in
+            let newOp: () -> Void = {
+                op.onComplete = {
+                    self?.subQueueCompleted()
+                }
+                op.start()
+            }
+            return newOp
+        })
+    }
+    
     deinit {
         queue = []
         onComplete = {}
     }
     
+    // MARK: - Public Interfaces
     func start() {
         guard _isOperating == false else {
             return
         }
         
-        runFirst()
+        if operateType == .sync {
+            self.runFirst()
+        } else if operateType == .async {
+            // run all operations
+            for op in queue {
+                op()
+            }
+        }
     }
     
     func clear() {
@@ -79,16 +121,14 @@ class SJOperationQueue: NSObject {
         queue = []
     }
     
-    func next() {
-        _ = queue.removeFirst()
-        runFirst()
-    }
-    
     func stop() {
         shouldStop = true
     }
-    
-    private func runFirst() {
+}
+
+// Sync Mode function
+extension SJOperationQueue {
+    fileprivate func runFirst() {
         // check if need stop runing
         guard shouldStop == false else {
             _isOperating = false
@@ -111,11 +151,21 @@ class SJOperationQueue: NSObject {
         }
     }
     
-    func addOperation(operation : @escaping ()->Void, atIndex index:Int? = nil) {
-        if index != nil {
-            queue.insert(operation, at: index!)
-        } else {
-            queue.append(operation)
+    
+    fileprivate func next() {
+        _ = queue.removeFirst()
+        runFirst()
+    }
+}
+
+// MARK: - Async Mode Functions
+extension SJOperationQueue {
+    
+    private func subQueueCompleted() {
+        completedCount += 1
+        
+        if completedCount == totalCount {
+            self.onComplete()
         }
     }
 }
