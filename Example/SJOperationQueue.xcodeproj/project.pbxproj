@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220A523A2272A1660002B0F4 /* SJOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A52392272A1660002B0F4 /* SJOperationQueue.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		220A52392272A1660002B0F4 /* SJOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SJOperationQueue.swift; sourceTree = "<group>"; };
 		22F8EE3A224E1059007B5D66 /* SJOperationQueue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SJOperationQueue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		239B9E67FE4F1E95A31F82B5 /* Pods-SJOperationQueue_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SJOperationQueue_Example.release.xcconfig"; path = "Target Support Files/Pods-SJOperationQueue_Example/Pods-SJOperationQueue_Example.release.xcconfig"; sourceTree = "<group>"; };
 		466027D8F8C00EFDC7190B0C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				220A52392272A1660002B0F4 /* SJOperationQueue.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -337,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220A523A2272A1660002B0F4 /* SJOperationQueue.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);

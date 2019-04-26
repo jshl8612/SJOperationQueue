@@ -7,38 +7,77 @@
 //
 
 import UIKit
-import SJOperationQueue
 
 class ViewController: UIViewController {
 
+    var opQueue: SJOperationQueue!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        testOpQueue()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func testOpQueue() {
+        // Do any additional setup after loading the view.
         
-        let printQueue: (_ startInt: Int) -> SJOperationQueue = { startInt in
-            
-            return SJOperationQueue(queue: (startInt...startInt+29).map({ val in
-                let op: ()->Void = {
-                    print("\(val)")
-                }
-                return op
-            }))
+        opQueue = SJOperationQueue(syncOpQueueList: [getLoadOpQueue(), getSaveOpQueue()])
+        opQueue.onComplete = {
+            print("All Work is Done, go to next step")
         }
         
-        let queue1 = SJOperationQueue(opQueueList: [printQueue(1), printQueue(31)])
-        let queue2 = SJOperationQueue(opQueueList: [printQueue(61), printQueue(91)])
-        let queue = SJOperationQueue(opQueueList: [queue1, queue2])
+        opQueue.start()
+    }
+    
+    // Load Operation is async mode
+    func getLoadOpQueue() -> SJOperationQueue {
         
-        queue.start()
+        var opList: [SJOperationQueue.SJOperation] = []
+        for index in (0...10) {
+            
+            opList.append { onCompleted in
+                DispatchQueue.main.asyncAfter(
+                deadline: .now() + .seconds(Int.random(in: (1...2)))) {
+                    
+                    let desc = "\nLoadOperation\(index) is Done."
+                    print(desc)
+                    onCompleted()
+                }
+            }
+        }
+        
+        
+        let loadOpQueue = SJOperationQueue(async: opList)
+        
+        loadOpQueue.onComplete = {
+            print("All of load operations is Done")
+        }
+        
+        
+        return loadOpQueue
+    }
+    
+    // Save Operation is sync mode
+    func getSaveOpQueue() -> SJOperationQueue {
+        
+        var opList: [SJOperationQueue.SJOperation] = []
+        for index in (0...10) {
+            
+            opList.append { onCompleted in
+                DispatchQueue.main.asyncAfter(
+                deadline: .now() + .seconds(Int.random(in: (1...2)))) {
+                    
+                    let desc = "\nSaveOperation\(index) is Done."
+                    print(desc)
+                    onCompleted()
+                }
+            }
+        }
+        
+        
+        let saveOpQueue = SJOperationQueue(sync: opList)
+        
+        saveOpQueue.onComplete = {
+            
+            print("All of save operations is Done")
+        }
+        
+        return saveOpQueue
     }
 }
 
